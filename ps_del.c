@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:12:26 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 15:24:22 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/12 19:59:05 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 // TODO
 void ps_del(void *content)
 {
-	free(content);
+	(void) content;
+	content = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 22:12:06 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 14:59:20 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/12 19:55:05 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 typedef struct s_dlist
 {
-	void			*content;
+	int				content;
 	struct s_dlist	*next;
 	struct s_dlist	*prev;
 }				t_dlist;
 
-t_dlist	*ftdlst_new(void *content);
+t_dlist	*ftdlst_new(int content);
 
 typedef struct s_dq
 {

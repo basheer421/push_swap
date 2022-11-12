@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dqdel_first.c                                   :+:      :+:    :+:   */
+/*   ps_del.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 23:01:37 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 16:09:02 by bammar           ###   ########.fr       */
+/*   Created: 2022/11/12 15:12:26 by bammar            #+#    #+#             */
+/*   Updated: 2022/11/12 15:24:22 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dq.h"
+#include "push_swap.h"
 
-void	ft_dqdel_first(t_dq *lst, void (*del)(void *))
+// TODO
+void ps_del(void *content)
 {
-	t_dlist	*temp;
-
-	if (!lst || !lst->head)
-		return ;
-	temp = lst->head;
-	lst->head = lst->head->next;
-	if (lst->head)
-		lst->head->prev = NULL;
-	else
-		lst->tail = NULL;
-	del((void *)temp->content);
-	free((void *)temp);
+	free(content);
 }

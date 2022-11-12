@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 22:48:30 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/07 22:49:31 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/12 15:28:11 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_dlist	*ftdlst_new(void *content)
 	list = malloc(sizeof(t_dlist));
 	if (!list)
 		return (NULL);
-	list -> content = content;
+	list -> content = ft_strdup(content);
 	list -> next = NULL;
 	list -> prev = NULL;
 	return (list);

@@ -6,15 +6,16 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:44 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 21:19:19 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/12 22:41:50 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+
 #include "ft_deque/ft_dq.h"
-
-
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
+#include "limits.h"
 
 typedef struct	s_ps
 {
@@ -32,3 +33,6 @@ t_ps	*ps_init(int argc, char **argv);
 t_ps	*ps_new(void);
 void	ps_destroy(t_ps *ps);
 long	ft_atol(const char *str);
+void	tab_sort(int *t, int size);
+
+#endif

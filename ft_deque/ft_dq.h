@@ -6,14 +6,14 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 22:12:06 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 20:45:09 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/12 22:40:16 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DQ_H
 # define FT_DQ_H
 
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_dlist
 {

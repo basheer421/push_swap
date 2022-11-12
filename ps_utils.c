@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 21:15:41 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 21:20:27 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/12 22:42:15 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,29 @@ long	ft_atol(const char *str)
 	if (y - zrs >= 19 && bad_case((char *)str + i + zrs, sign, y, zrs) != 1)
 		return (bad_case((char *)str + i + zrs, sign, y, zrs));
 	return (val * sign);
+}
+
+void	tab_sort(int *t, int size)
+{
+	int	i;
+	int	y;
+	int	min_index;
+	int	temp;
+
+	i = 0;
+	while (i < size)
+	{
+		min_index = i;
+		y = i;
+		while (y < size)
+		{
+			if (t[y] < t[min_index])
+				min_index = y;
+			y++;
+		}
+		temp = t[i];
+        t[i] = t[min_index];
+        t[min_index] = temp;
+		i++;
+	}
 }

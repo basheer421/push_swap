@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:35 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 21:24:46 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/12 22:39:04 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // 		ft_dqdel_first(a, ps_del);
 // }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_ps	*ps;
 

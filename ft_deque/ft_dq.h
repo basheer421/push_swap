@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 22:12:06 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 19:55:05 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/12 20:45:09 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_dq
 t_dq	*ftdq_new(void);
 void	ft_dqadd_first(t_dq *lst, t_dlist *new);
 void	ft_dqadd_last(t_dq *lst, t_dlist *new);
-void	ft_dqdel_first(t_dq *lst, void (*del)(void *));
-void	ft_dqdel_last(t_dq *lst, void (*del)(void *));
+void	ft_dqdel_first(t_dq *lst);
+void	ft_dqdel_last(t_dq *lst);
 
 #endif

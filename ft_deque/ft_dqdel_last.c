@@ -6,13 +6,13 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 23:01:22 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 19:50:41 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/12 20:39:53 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_dq.h"
 
-void	ft_dqdel_last(t_dq *lst, void (*del)(void *))
+void	ft_dqdel_last(t_dq *lst)
 {
 	t_dlist	*temp;
 
@@ -24,6 +24,5 @@ void	ft_dqdel_last(t_dq *lst, void (*del)(void *))
 		lst->tail->next = NULL;
 	else
 		lst->head = NULL;
-	del((void *)temp->content);
 	free((void *)temp);
 }

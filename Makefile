@@ -8,7 +8,8 @@ FILES = push_swap.c \
 		ft_deque/ft_dqnew.c	\
 		ps_moves.c	\
 		ps_utils.c	\
-		ps_parse.c
+		ps_parse_utils.c \
+		ps_parse.c \
 
 CC = cc	
 CFLAGS = -Wall -Wextra -Werror

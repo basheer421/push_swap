@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dqadd_last.c                                    :+:      :+:    :+:   */
+/*   ps_parse_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 22:53:37 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/13 14:20:43 by bammar           ###   ########.fr       */
+/*   Created: 2022/11/13 13:37:58 by bammar            #+#    #+#             */
+/*   Updated: 2022/11/13 14:26:37 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dq.h"
+#include "push_swap.h"
 
-void	ft_dqadd_last(t_dq *lst, t_dlist *new)
+int	ps_dqfill(t_dq *dq, int *tab, int size)
 {
-	if (!lst)
-		return ;
-	if (!lst->tail)
+	int	i;
+
+	i = 0;
+	while (i < size)
 	{
-		lst->head = new;
-		lst->tail = new;
-		return ;
+		ft_dqadd_last(dq, ftdlst_new(tab[i]));
+		if (dq->tail == NULL)
+			return (-1);
+		i++;
 	}
-	lst->tail->next = new;
-	new->prev = lst->tail;
-	lst->tail = new;
-	return ;
+	return (0);
+}
+
+void	ps_dqfree(t_dq	*dq)
+{
+	if (!dq)
+		return ;
+	while (dq->head != NULL)
+		ft_dqdel_first(dq);
 }

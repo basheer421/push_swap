@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:44 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 22:41:50 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/13 14:25:44 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ t_ps	*ps_new(void);
 void	ps_destroy(t_ps *ps);
 long	ft_atol(const char *str);
 void	tab_sort(int *t, int size);
+int		ps_dqfill(t_dq *dq, int *tab, int size);
+void	ps_dqfree(t_dq	*dq);
 
 #endif

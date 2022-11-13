@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:13:54 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 22:37:14 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/13 14:26:16 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ t_ps	*ps_new(void)
 
 void	ps_destroy(t_ps *ps)
 {
+	ps_dqfree(ps->a);
+	ps_dqfree(ps->b);
+	ps_dqfree(ps->s);
 	free(ps->a);
 	free(ps->b);
 	free(ps->s);
@@ -77,6 +80,7 @@ static int	*get_nums(int argc, char **argv)
 	nums[i - 1] = 0;
 	return (nums);
 }
+
 t_ps	*ps_init(int argc, char **argv)
 {
 	t_ps	*ps;
@@ -85,10 +89,14 @@ t_ps	*ps_init(int argc, char **argv)
 	nums = get_nums(argc, argv);
 	if (!nums)
 		return (NULL);
-	tab_sort(nums, argc - 1);
-	free(nums);
 	ps = ps_new();
 	if (!ps)
-		return (NULL);
+		return (free(nums), NULL);
+	if (ps_dqfill(ps->a, nums, argc - 1) == -1)
+		return (free(nums), ps_destroy(ps), NULL);
+	tab_sort(nums, argc - 1);
+	if (ps_dqfill(ps->s, nums, argc - 1) == -1)
+		return (free(nums), ps_destroy(ps), NULL);
+	free(nums);
 	return (ps);
 }

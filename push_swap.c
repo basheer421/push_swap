@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:35 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/12 22:39:04 by bammar           ###   ########.fr       */
+/*   Updated: 2022/11/13 17:11:57 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,8 @@
 // 	{
 // 		ft_putnbr_fd(a->head->content, 1);
 // 		write(1, "\n", 1);
-// 		ft_dqdel_first(a, ps_del);
+// 		ft_dqdel_first(a);
 // 	}
-// }
-
-// static void	dqfree(t_dq	*dq)
-// {
-// 	if (!dq)
-// 		return ;
-// 	while (a->head != NULL)
-// 		ft_dqdel_first(a, ps_del);
 // }
 
 int	main(int argc, char **argv)
@@ -39,6 +31,25 @@ int	main(int argc, char **argv)
 	ps = ps_init(argc, argv);
 	if (!ps)
 		return (ft_putstr_fd("Error\nInvalid Arguments\n", 2), 1);
-	ps_destroy(ps);
+	while (ps->s->head)
+	{
+		if (ps->b->head
+			&& ps->b->head->content == ps->s->head->content)
+		{
+			push_from(ps->b, ps->a);
+			ft_putendl_fd("pa", 1);
+		}
+		if (ps->a->head->content == ps->s->head->content)
+		{
+			rotate(ps->a);
+			ft_dqdel_first(ps->s);
+			ft_putendl_fd("ra", 1);
+		}
+		else
+		{
+			push_from(ps->a, ps->b);
+			ft_putendl_fd("pb", 1);
+		}
+	}
 	return (0);
 }

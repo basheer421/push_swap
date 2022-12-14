@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:13:54 by bammar            #+#    #+#             */
-/*   Updated: 2022/11/13 14:26:16 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/14 17:08:30 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ps_destroy(t_ps *ps)
 	free(ps);
 }
 
-static int	is_in(int item, int *lst, int size)
+static u_int64_t	is_in(u_int64_t item, u_int64_t *lst, int size)
 {
 	int	i;
 	
@@ -56,13 +56,13 @@ static int	is_in(int item, int *lst, int size)
 	return (0);
 }
 
-static int	*get_nums(int argc, char **argv)
+static u_int64_t	*get_nums(int argc, char **argv)
 {
-	int		*nums;
-	long	num;
-	int		i;
+	u_int64_t		*nums;
+	long					num;
+	int						i;
 
-	nums = malloc(sizeof(int) * argc);
+	nums = malloc(8 * argc);
 	if (!nums)
 		return (NULL);
 	i = 0;
@@ -75,7 +75,9 @@ static int	*get_nums(int argc, char **argv)
 			|| (num > INT_MAX)
 			|| (is_in(num, nums, i - 1)))
 			return (free(nums), NULL);
-		nums[i - 1] = (int)num;
+		nums[i - 1] = (u_int64_t)num;
+		if (nums[i - 1] < 0)
+			nums[i - 1] = nums[i - 1] << (32);
 	}
 	nums[i - 1] = 0;
 	return (nums);
@@ -83,8 +85,8 @@ static int	*get_nums(int argc, char **argv)
 
 t_ps	*ps_init(int argc, char **argv)
 {
-	t_ps	*ps;
-	int		*nums;
+	t_ps					*ps;
+	u_int64_t		*nums;
 
 	nums = get_nums(argc, argv);
 	if (!nums)

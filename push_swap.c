@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:35 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/14 19:51:20 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/14 20:48:18 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,68 +47,87 @@ int	dq_contains_bit(t_dq *dq, u_int64_t *item)
 	return (0);
 }
 
+void radix(t_ps *ps, int n)
+{
+	u_int64_t	left;
+	int			i;
+
+	left = leftmost(ps->s->tail->content); //of max
+	while (left > 0)
+	{
+		i = 0;
+		while (i < n && dq_contains_bit(ps->a, &left))
+		{
+			if ((ps->a->head->content & left) != 0)
+			{
+				push_from(ps->a, ps->b);
+				printf("pb\n");
+			}
+			else
+			{
+				rotate(ps->a);
+				printf("ra\n");
+			}
+			i++;
+		}
+		left = left >> 1;
+	}
+	if (ps->a->head)
+	{
+		push_from(ps->a, ps->b);
+		printf("pb\n");
+	}
+}
+
+int	change_path(t_dq *dq, u_int64_t *item, int n)
+{
+	t_dlist	*node;
+	int		i;
+
+	i = 0;
+	node = dq->head;
+	while (node && i++ < n / 2)
+	{
+		if (node->content == *item)
+			return (0);
+		node = node->next;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
-	t_ps	*ps;
-	int		num;
+	t_ps		*ps;
+	int			path;
 
 	if (argc == 1)
 		return (0);
 	ps = ps_init(argc, argv);
 	if (!ps)
 		return (ft_putstr_fd("Error\nInvalid Arguments\n", 2), 1);
-	
-	u_int64_t	left;
-	int			i;
-	int			y;
-
-	left = leftmost(ps->s->tail->content); //of max
-	// printf("%llu\n", left);
-	y = 0;
-	// while (y < 3)
-	// {
-		if (ps->a)
-			while (left > 0)
+	radix(ps, argc);
+	while (ps->b->head)
+	{
+		path = change_path(ps->b, &ps->s->tail->content, ft_dqsize(ps->b));
+		if (ps->b->head->content == ps->s->tail->content)
+		{
+			push_from(ps->b, ps->a);
+			printf("pa\n");
+			ft_dqdel_last(ps->s);
+		}
+		else
+		{
+			if (path == 0)
 			{
-				i = 0;
-				while (i < argc - 1 && dq_contains_bit(ps->a, &left))
-				{
-					if ((ps->a->head->content & left) != 0)
-					{
-						push_from(ps->a, ps->b);
-						printf("pb\n");
-					}
-					else
-					{
-						rotate(ps->a);
-						printf("ra\n");
-					}
-					i++;
-				}
-				left = left >> 1;
+				rotate(ps->b);
+				printf("rb\n");
 			}
-		// else
-		// 	while (left > 0)
-		// 	{
-		// 		i = 0;
-		// 		while (i < argc - 1 && dq_contains_bit(ps->b, &left))
-		// 		{
-		// 			if ((ps->a->head->content & left) != 0)
-		// 			{
-		// 				push_from(ps->b, ps->a);
-		// 				printf("pa\n");
-		// 			}
-		// 			else
-		// 			{
-		// 				rrotate(ps->b);
-		// 				printf("rb\n");
-		// 			}
-		// 			i++;
-		// 		}
-		// 		left = left >> 1;
-		// 	}
-	// }
-	// printdq(ps->a);
-	(void)num;
+			else
+			{
+				rrotate(ps->b);
+				printf("rrb\n");
+			}
+		}
+	}
 	return (0);
 }

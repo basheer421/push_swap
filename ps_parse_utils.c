@@ -6,13 +6,13 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 13:37:58 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/14 16:51:52 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/15 18:49:07 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ps_dqfill(t_dq *dq, u_int64_t *tab, int size)
+int	ps_dqfill(t_dq *dq, int *tab, int size)
 {
 	int	i;
 

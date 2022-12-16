@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 21:15:41 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/14 16:51:40 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/15 18:49:07 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ long	ft_atol(const char *str)
 	return (val * sign);
 }
 
-void	tab_sort(u_int64_t *t, int size)
+void	tab_sort(int *t, int size)
 {
 	int	i;
 	int	y;
@@ -104,4 +104,21 @@ void	tab_sort(u_int64_t *t, int size)
         t[min_index] = temp;
 		i++;
 	}
+}
+
+int	get_index(int num, t_dlist *lst)
+{
+	t_dlist	*node;
+	int		index;
+
+	index = 0;
+	node = lst;
+	while (node)
+	{
+		if (node->content == num)
+			return (index);
+		node = node->next;
+		index++;
+	}
+	return (-1);
 }

@@ -11,9 +11,10 @@ FILES = push_swap.c \
 		ps_utils.c	\
 		ps_parse_utils.c \
 		ps_parse.c \
+		ps_radix.c	\
 
 CC = cc	
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 OBJS = $(FILES:.c=.o)
 
 all: $(NAME)

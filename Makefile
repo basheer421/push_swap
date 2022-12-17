@@ -7,6 +7,7 @@ FILES = push_swap.c \
 		ft_deque/ft_dqdel_last.c \
 		ft_deque/ft_dqnew.c	\
 		ft_deque/ft_dqsize.c	\
+		sp_utils.c	\
 		ps_moves.c	\
 		ps_utils.c	\
 		ps_parse_utils.c \
@@ -14,7 +15,7 @@ FILES = push_swap.c \
 		ps_radix.c	\
 
 CC = cc	
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 OBJS = $(FILES:.c=.o)
 
 all: $(NAME)

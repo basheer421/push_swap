@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:44 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/16 21:34:18 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/17 17:11:43 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ typedef struct s_ps
 	t_dq	*a;
 	t_dq	*b;
 	t_dq	*s;
-	int		pending_ra;
-	int		pending_rb;
-	int		pending_rra;
-	int		pending_rrb;
+	char	**argv;
 }			t_ps;
 
 int			swap_top(t_dq *dq);
@@ -34,6 +31,8 @@ int			rotate(t_dq *dq);
 int			rrotate(t_dq *dq);
 
 int			get_index(int num, t_dlist *lst);
+int			sp_numcount(char **nums);
+void		sp_free(char **arrays);
 t_ps		*ps_init(int argc, char **argv);
 t_ps		*ps_new(void);
 void		ps_destroy(t_ps *ps);

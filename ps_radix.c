@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:19:56 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/16 20:50:06 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:09:21 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ t_dq	*dq_copy(t_dq *dq)
 int	get_groupsize(int size)
 {
 	if (size <= 3)
-		return (1);
-	if (size <= 10)
 		return (2);
-	if (size <= 50)
+	if (size <= 12)
 		return (3);
+	if (size <= 50)
+		return (4);
 	if (size <= 100)
 		return (10);
 	if (size <= 250)

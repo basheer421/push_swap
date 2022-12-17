@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:13:54 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/16 21:36:07 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:04:56 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,20 @@ static int	*get_nums(int argc, char **argv)
 	long	num;
 	int		i;
 
-	nums = malloc(sizeof(int) * argc);
+	nums = malloc(sizeof(int) * (argc + 1));
 	if (!nums)
 		return (NULL);
 	i = 0;
-	while (++i < argc)
+	while (i < argc)
 	{
 		num = ft_atol(argv[i]);
 		if (((num == 0) && (ft_strncmp(argv[i], "0", 1) != 0)) || ((num == -1)
 				&& (ft_strncmp(argv[i], "-1", 2) != 0)) || (num < INT_MIN)
-			|| (num > INT_MAX) || (is_in(num, nums, i - 1)))
+			|| (num > INT_MAX) || (is_in(num, nums, i)))
 			return (free(nums), NULL);
-		nums[i - 1] = (int)num;
+		nums[i++] = (int)num;
 	}
-	nums[i - 1] = 0;
+	nums[i] = 0;
 	return (nums);
 }
 
@@ -103,19 +103,26 @@ t_ps	*ps_init(int argc, char **argv)
 {
 	t_ps	*ps;
 	int		*nums;
+	int		count;
 
-	nums = get_nums(argc, argv);
-	if (!nums)
-		return (NULL);
 	ps = ps_new();
 	if (!ps)
-		return (free(nums), NULL);
-	if (ps_dqfill(ps->a, nums, argc - 1) == -1)
+		return (NULL);
+	ps->argv = argv + 1;
+	if (argc == 2)
+	{
+		ps->argv = ft_split(argv[1], ' ');
+		if (sp_numcount(ps->argv) < 2)
+			return (sp_free(ps->argv), free(ps), NULL);
+	}
+	count = sp_numcount(ps->argv);
+	nums = get_nums(count, ps->argv);
+	if (!nums)
+		return (NULL);
+	if (ps_dqfill(ps->a, nums, count) == -1)
 		return (free(nums), ps_destroy(ps), NULL);
-	tab_sort(nums, argc - 1);
-	if (ps_dqfill(ps->s, nums, argc - 1) == -1)
+	tab_sort(nums, count);
+	if (ps_dqfill(ps->s, nums, count) == -1)
 		return (free(nums), ps_destroy(ps), NULL);
-	indexify(ps);
-	free(nums);
-	return (ps);
+	return (indexify(ps), free(nums), ps);
 }

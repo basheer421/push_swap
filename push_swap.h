@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:44 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/17 17:11:43 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/18 18:24:00 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "ft_deque/ft_dq.h"
 # include "limits.h"
-# include "stdio.h" // remove
 
 typedef struct s_ps
 {
@@ -46,5 +45,9 @@ int			get_groupsize(int size);
 int			get_group(t_dq *sorted_dq, int num, int size);
 void		remove_from_stack(t_dq *dq, int item);
 void		radix(t_ps *ps);
+int			change_path(t_dq *dq, int *item, int n);
+void		look_in_b(t_ps *ps, int path);
+void		save_in_bottom(t_ps *ps);
+void		push_back(t_ps *ps);
 
 #endif

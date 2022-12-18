@@ -14,6 +14,7 @@ FILES = push_swap.c \
 		ps_parse_utils.c \
 		ps_parse.c \
 		ps_radix.c	\
+		ps_retrun.c
 
 CC = cc	
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address

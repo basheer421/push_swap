@@ -6,83 +6,98 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:35 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/18 15:54:58 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/18 22:30:52 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
-int	change_path(t_dq *dq, int *item, int n)
-{	
-	t_dlist	*node;
-	int		i;
+int	is_sorted(t_dq *a)
+{
+	t_dlist	*node1;
 
-	i = 0;
-	node = dq->head;
-	while (node && i++ < n / 2)
+	node1 = a->head;
+	if (!node1)
+		return (0);
+	while (node1->next)
 	{
-		if (node->content == *item)
+		if (node1->content > node1->next->content)
 			return (0);
-		node = node->next;
+		node1 = node1->next;
 	}
 	return (1);
 }
 
-
-void printdq(t_dq *dq)
+static void	push2b(t_ps *ps, int size)
 {
-	t_dlist *node;
+	int	i;
 
-	node = dq->head;
-	while (node)
+	i = size;
+	while (i-- > 3)
 	{
-		printf("%d, ", node->content);
-		node = node->next;
+		push_from(ps->a, ps->b);
+		ft_putstr_fd("pb\n", 1);
 	}
-	printf("\n");
+}
+
+static void	repush2b(t_ps *ps)
+{
+	while (ps->b->head)
+	{
+		while (ps->a->head->content < ps->b->head->content
+			&& ps->b->head->content != ps->s->tail->content)
+		{
+			rotate(ps->a);
+			ft_putstr_fd("ra\n", 1);
+		}
+		push_from(ps->b, ps->a);
+		ft_putstr_fd("pa\n", 1);
+		while (!is_sorted(ps->a))
+		{
+			rotate(ps->a);
+			ft_putstr_fd("ra\n", 1);
+		}
+	}
+}
+
+void	small_sort(t_ps *ps, int size)
+{
+	push2b(ps, size);
+	while (!is_sorted(ps->a))
+	{
+		if (ps->a->head->content > ps->a->head->next->content)
+		{
+			rotate(ps->a);
+			ft_putstr_fd("ra\n", 1);
+		}
+		else
+		{
+			swap_top(ps->a);
+			ft_putstr_fd("sa\n", 1);
+		}
+	}
+	repush2b(ps);
 }
 
 int	main(int argc, char **argv)
 {
-	t_ps		*ps;
-	int			path;
+	t_ps	*ps;
 
 	if (argc == 1)
 		return (0);
 	ps = ps_init(argc, argv);
 	if (!ps)
 		return (ft_putstr_fd("Error\nInvalid Arguments\n", 2), 1);
-	radix(ps);
-	while (ps->b->head)
+	// check if the size is small, and make a small algorithm for it!
+	if (!is_sorted(ps->a))
 	{
-		path = change_path(ps->b, &ps->s->tail->content, ft_dqsize(ps->b));
-		if (ps->b->head->content == ps->s->tail->content || (ps->s->tail->prev && ps->b->head->content == ps->s->tail->prev->content))
+		if (argc - 1 <= 5)
+			small_sort(ps, argc - 1);
+		else
 		{
-			if (ps->b->head->content == ps->s->tail->content)
-				ft_dqdel_last(ps->s);
-			push_from(ps->b, ps->a);
-			printf("pa\n");
-			if (ps->s->tail && (ps->s->tail->prev && ps->a->head->content == ps->s->tail->prev->content) && ft_dqsize(ps->a) > 1)
-			{
-				rotate(ps->a);
-				printf("ra\n");
-			}
-			else if (ps->s->tail && ps->s->tail->content == ps->a->tail->content)
-			{
-				rrotate(ps->a);
-				printf("rra\n");
-				ft_dqdel_last(ps->s);
-			}
-		}
-		else if (path == 0 && ft_dqcontains(ps->b, ps->s->tail->content))
-		{
-			rotate(ps->b);
-			printf("rb\n");
-		}
-		else if (ft_dqcontains(ps->b, ps->s->tail->content))
-		{
-			rrotate(ps->b);
-			printf("rrb\n");
+			radix(ps);
+			push_back(ps);
 		}
 	}
 	if (argc == 2)

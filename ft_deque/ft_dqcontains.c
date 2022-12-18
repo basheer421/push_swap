@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_parse_utils.c                                   :+:      :+:    :+:   */
+/*   ft_dqcontains.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 13:37:58 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/18 15:15:07 by bammar           ###   ########.fr       */
+/*   Created: 2022/12/18 15:18:52 by bammar            #+#    #+#             */
+/*   Updated: 2022/12/18 15:20:14 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_dq.h"
 
-int	ps_dqfill(t_dq *dq, int *tab, int size)
+int	ft_dqcontains(t_dq *dq, int item)
 {
-	int	i;
+	t_dlist	*node;
 
-	i = 0;
-	while (i < size)
+	node = dq->head;
+	while (node)
 	{
-		ft_dqadd_last(dq, ftdlst_new(tab[i]));
-		if (dq->tail == NULL)
-			return (-1);
-		i++;
+		if (node->content == item)
+			return (1);
+		node = node->next;
 	}
 	return (0);
-}
-
-void	ps_dqfree(t_dq	*dq)
-{
-	if (!dq)
-		return ;
-	while (dq->head != NULL)
-		ft_dqdel_first(dq);
 }

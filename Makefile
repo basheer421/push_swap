@@ -7,6 +7,7 @@ FILES = push_swap.c \
 		ft_deque/ft_dqdel_last.c \
 		ft_deque/ft_dqnew.c	\
 		ft_deque/ft_dqsize.c	\
+		ft_deque/ft_dqcontains.c	\
 		sp_utils.c	\
 		ps_moves.c	\
 		ps_utils.c	\

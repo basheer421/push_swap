@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:35 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/19 18:15:53 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/19 19:59:02 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ int	main(int argc, char **argv)
 	}
 	if (argc == 2)
 		sp_free(ps->argv);
-	return (free(ps), 0);
+	free(ps);
+	return (0);
 }

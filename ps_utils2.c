@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:17:08 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/19 18:18:44 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/19 19:50:20 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ int	get_index(int num, t_dlist *lst)
 
 void	ps_destroy(t_ps *ps)
 {
+	int	i;
+
+	i = 0;
+	while (ps->argv[i])
+		free(ps->argv[i++]);
 	ps_dqfree(ps->a);
 	ps_dqfree(ps->b);
 	ps_dqfree(ps->s);

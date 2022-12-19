@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:13:54 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/19 18:19:07 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/19 19:57:55 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ static int	*get_nums(int argc, char **argv)
 	while (i < argc)
 	{
 		num = ft_atol(argv[i]);
-		if (((num == 0) && (ft_strncmp(argv[i], "0", 1) != 0)) || ((num == -1)
-				&& (ft_strncmp(argv[i], "-1", 2) != 0)) || (num < INT_MIN)
-			|| (num > INT_MAX) || (is_in(num, nums, i)))
+		if ((ft_strncmp(ft_itoa(num), argv[i], ft_strlen(argv[i])) != 0)
+			|| ((num == 0) && (ft_strncmp(argv[i], "0", 1) != 0))
+			|| ((num == -1) && (ft_strncmp(argv[i], "-1", 2) != 0))
+			|| (num < INT_MIN) || (num > INT_MAX) || (is_in(num, nums, i)))
 			return (free(nums), NULL);
 		nums[i++] = (int)num;
 	}
@@ -106,7 +107,7 @@ t_ps	*ps_init(int argc, char **argv)
 	}
 	count = sp_numcount(ps->argv);
 	nums = get_nums(count, ps->argv);
-	if (!nums)
+	if (nums == NULL)
 		return (NULL);
 	if (ps_dqfill(ps->a, nums, count) == -1)
 		return (free(nums), ps_destroy(ps), NULL);

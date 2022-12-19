@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:19:56 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/18 16:30:30 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/19 18:17:51 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,29 +97,29 @@ void	remove_from_stack(t_dq *dq, int item)
 
 void	radix(t_ps *ps)
 {
-	int		current_group;
-	int		group;
-	int		size;
-	t_dq	*temp_dq;
+	t_radix	radix;
 
-	current_group = 0;
-	size = ft_dqsize(ps->a);
-	temp_dq = dq_copy(ps->s);
+	radix.current_group = 0;
+	radix.size = ft_dqsize(ps->a);
+	radix.temp_dq = dq_copy(ps->s);
 	while (ps->a->head)
 	{
-		group = get_group(temp_dq, ps->a->head->content, size);
-		if (group == current_group)
+		radix.group = get_group(radix.temp_dq, ps->a->head->content,
+				radix.size);
+		if (radix.group == radix.current_group)
 		{
 			push_from(ps->a, ps->b);
 			ft_putendl_fd("pb", 1);
-			remove_from_stack(temp_dq, ps->b->head->content);
+			remove_from_stack(radix.temp_dq, ps->b->head->content);
 		}
-		else if (group == -1)
-			current_group++;
+		else if (radix.group == -1)
+			radix.current_group++;
 		else
 		{
 			rotate(ps->a);
 			ft_putendl_fd("ra", 1);
 		}
 	}
+	ps_dqfree(radix.temp_dq);
+	free(radix.temp_dq);
 }

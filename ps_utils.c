@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 21:15:41 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/17 16:55:34 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/19 18:16:57 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,25 +100,8 @@ void	tab_sort(int *t, int size)
 			y++;
 		}
 		temp = t[i];
-        t[i] = t[min_index];
-        t[min_index] = temp;
+		t[i] = t[min_index];
+		t[min_index] = temp;
 		i++;
 	}
-}
-
-int	get_index(int num, t_dlist *lst)
-{
-	t_dlist	*node;
-	int		index;
-
-	index = 0;
-	node = lst;
-	while (node)
-	{
-		if (node->content == num)
-			return (index);
-		node = node->next;
-		index++;
-	}
-	return (-1);
 }

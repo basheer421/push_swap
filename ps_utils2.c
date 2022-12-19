@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dqsize.c                                        :+:      :+:    :+:   */
+/*   ps_utils2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 20:38:52 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/19 18:20:06 by bammar           ###   ########.fr       */
+/*   Created: 2022/12/19 18:17:08 by bammar            #+#    #+#             */
+/*   Updated: 2022/12/19 18:18:44 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dq.h"
+#include "push_swap.h"
 
-size_t	ft_dqsize(t_dq *lst)
+int	get_index(int num, t_dlist *lst)
 {
 	t_dlist	*node;
-	size_t	size;
+	int		index;
 
-	node = lst->head;
-	size = 0;
+	index = 0;
+	node = lst;
 	while (node)
 	{
-		size++;
+		if (node->content == num)
+			return (index);
 		node = node->next;
+		index++;
 	}
-	return (size);
+	return (-1);
+}
+
+void	ps_destroy(t_ps *ps)
+{
+	ps_dqfree(ps->a);
+	ps_dqfree(ps->b);
+	ps_dqfree(ps->s);
+	free(ps->a);
+	free(ps->b);
+	free(ps->s);
+	free(ps);
 }

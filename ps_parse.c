@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:13:54 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/17 18:04:56 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/19 18:19:07 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,6 @@ t_ps	*ps_new(void)
 	if (!ps->s)
 		return (NULL);
 	return (ps);
-}
-
-void	ps_destroy(t_ps *ps)
-{
-	ps_dqfree(ps->a);
-	ps_dqfree(ps->b);
-	ps_dqfree(ps->s);
-	free(ps->a);
-	free(ps->b);
-	free(ps->s);
-	free(ps);
 }
 
 static int	is_in(int item, int *lst, int size)

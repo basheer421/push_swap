@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:44 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/18 18:24:00 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/19 18:24:28 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,20 @@
 
 typedef struct s_ps
 {
-	t_dq	*a;
-	t_dq	*b;
-	t_dq	*s;
-	char	**argv;
+	t_dq		*a;
+	t_dq		*b;
+	t_dq		*s;
+	char		**argv;
+
 }			t_ps;
+
+typedef struct s_radix
+{
+	int		current_group;
+	int		group;
+	int		size;
+	t_dq	*temp_dq;
+}			t_radix;
 
 int			swap_top(t_dq *dq);
 int			push_from(t_dq *src, t_dq *dst);

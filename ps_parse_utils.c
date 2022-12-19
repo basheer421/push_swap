@@ -6,7 +6,7 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 13:37:58 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/18 15:15:07 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/19 18:15:15 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ps_dqfill(t_dq *dq, int *tab, int size)
 	return (0);
 }
 
-void	ps_dqfree(t_dq	*dq)
+void	ps_dqfree(t_dq *dq)
 {
 	if (!dq)
 		return ;

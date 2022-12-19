@@ -6,12 +6,11 @@
 /*   By: bammar <bammar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:52:35 by bammar            #+#    #+#             */
-/*   Updated: 2022/12/18 22:30:52 by bammar           ###   ########.fr       */
+/*   Updated: 2022/12/19 18:15:53 by bammar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	is_sorted(t_dq *a)
 {
@@ -89,7 +88,6 @@ int	main(int argc, char **argv)
 	ps = ps_init(argc, argv);
 	if (!ps)
 		return (ft_putstr_fd("Error\nInvalid Arguments\n", 2), 1);
-	// check if the size is small, and make a small algorithm for it!
 	if (!is_sorted(ps->a))
 	{
 		if (argc - 1 <= 5)
